@@ -1,0 +1,204 @@
+.ToDoPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
+}
+
+
+.BtnLogout {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 8px 18px;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.BtnLogout:hover {
+  background-color: #ff4d4d;
+  border-color: #ff4d4d;
+  box-shadow: 0 4px 15px rgba(255, 77, 77, 0.4);
+}
+
+
+.toDo {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 30px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  margin-bottom: 25px;
+}
+
+.toDo h1 {
+  text-align: center;
+  color: #4a2a6b;
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-size: 2rem;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 10px;
+}
+
+.toDo ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+
+.toDo li {
+  background: #ffffff;
+  margin-bottom: 12px;
+  padding: 12px 15px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #eee;
+}
+
+.toDo li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.toDo li span {
+  flex-grow: 1;
+  color: #333;
+  font-size: 1.05rem;
+  word-break: break-all;
+}
+
+
+.BtnComplete, .BtnDelete {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%; 
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0; 
+}
+
+
+.BtnComplete {
+  background-color: #e8f5e9;
+  color: #4caf50;
+}
+
+.BtnComplete::after {
+  content: '✔';
+  font-size: 1.1rem;
+}
+
+.BtnComplete:hover {
+  background-color: #4caf50;
+  color: white;
+}
+
+
+.BtnDelete {
+  background-color: #ffebee;
+  color: #f44336;
+}
+
+.BtnDelete::after {
+  content: '✕';
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.BtnDelete:hover {
+  background-color: #f44336;
+  color: white;
+}
+
+
+.completed {
+  background-color: #f8f9fa !important;
+  border-left: 5px solid #4caf50 !important;
+}
+
+.completed span {
+  text-decoration: line-through;
+  color: #888 !important;
+  opacity: 0.7;
+}
+
+.addTodo {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 25px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.addTodo h2 {
+  font-size: 1.3rem;
+  margin: 0;
+  color: #555;
+}
+
+.addTodo input {
+  padding: 14px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  outline: none;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.addTodo input:focus {
+  border-color: #8da0f1;
+}
+
+.BtnAdd {
+  padding: 14px;
+  background: linear-gradient(to right, #58327e, #8da0f1);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+.BtnAdd:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+
+
+@media (max-width: 600px) {
+  .toDo, .addTodo {
+    width: 95%;
+    padding: 20px;
+  }
+  
+  .toDo h1 {
+    font-size: 1.6rem;
+  }
+}

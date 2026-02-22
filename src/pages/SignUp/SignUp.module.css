@@ -1,0 +1,95 @@
+.SignUpPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+    padding: 20px; 
+    box-sizing: border-box;
+}
+
+.signupCard {
+    padding: 3rem 2rem;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, #8da0f1 0%, #58327e 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 450px; 
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+}
+
+.signupCard h1 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: white;
+}
+
+.signupCard form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.signupCard input {
+    background-color: white;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.8rem 1rem;
+    margin: 0.5rem 0rem;
+    color: #58327e;
+    width: 100%; 
+    font-size: 1rem;
+    box-sizing: border-box;
+    outline: none;
+    transition: box-shadow 0.3s ease;
+}
+
+.signupCard input:focus {
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4); 
+}
+
+.BtnSignUp {
+    background-color: #58327e;
+    border: none;
+    border-radius: 0.5rem;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 0.8rem 1rem;
+    margin-top: 1.5rem;
+    width: 100%; 
+    transition: background-color 0.3s ease;
+}
+
+.BtnSignUp:hover, .BtnSignUp:focus {
+    background-color: #4a2a6b;
+    outline: none;
+    cursor: pointer;
+}
+
+
+.signupCard p {
+    margin-top: 1.5rem;
+    color: white;
+    font-size: 0.95rem;
+}
+
+.signupCard a {
+    color: #ffd700;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signupCard a:hover {
+    text-decoration: underline;
+}
+
+
+@media (max-width: 400px) {
+    .signupCard {
+        padding: 2rem 1.5rem;
+    }
+}
