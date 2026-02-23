@@ -46,7 +46,7 @@ function ToDoPage() {
 
   const handleLogOut = () => {
     localStorage.removeItem('logged_in_user');
-    window.location.href = '/login';
+    navigate('/login');
   }
 
   return (

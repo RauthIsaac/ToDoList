@@ -22,6 +22,7 @@ function SignUp() {
     const userData = { email: user.email, password: user.password };
     localStorage.setItem('logged_in_user', JSON.stringify(userData))
 
+    setUser({ email: '', password: '' });
     navigate('/toDo');
   };
 
