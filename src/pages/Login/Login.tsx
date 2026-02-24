@@ -68,7 +68,7 @@ function Login() {
 
           </form>
 
-          <p>Don't have an account? <a href='/signUp'>Sign Up</a></p>
+          <p>Don't have an account? <a onClick={() => navigate('/signUp')}>Sign Up</a></p>
         </div>
       </div>
     </div>
