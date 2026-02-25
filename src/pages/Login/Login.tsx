@@ -2,14 +2,8 @@ import { useState } from 'react'
 import styles from './Login.module.css'
 import '../../data/data.ts'
 import { useNavigate } from 'react-router-dom'
-import { initialUsersData } from '../../data/data.ts';
+import { initialUsersData, type UserTodos } from '../../data/data.ts';
 
-
-function isUserExist({ email, password }: { email: string; password: string }) {
-  return initialUsersData.some(
-    (user) => user.userEmail === email && user.password === password
-  );
-}  
 
 function Login() {
   const [user, setUser] = useState({
@@ -23,15 +17,21 @@ function Login() {
 
     console.log('User:', user.email);
     console.log('Password:', user.password);
+    
+    const storedData = localStorage.getItem('users_data');
+    const allUsers: UserTodos[] = storedData ? JSON.parse(storedData) : initialUsersData;
 
-    if (!isUserExist(user)) {
+    const foundUser = allUsers.find(
+      (u) => u.userEmail === user.email && u.password === user.password
+    );
+
+    if (!foundUser) {
       alert('Invalid email or password. Please try again.');
       setUser({ email: '', password: '' });
       return;
     }
     
-    const userData = { email: user.email, password: user.password };
-    localStorage.setItem('logged_in_user', JSON.stringify(userData))
+    localStorage.setItem('logged_in_user', JSON.stringify(foundUser)); 
 
     setUser({ email: '', password: '' });
     navigate('/toDo');

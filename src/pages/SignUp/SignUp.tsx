@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom'
 import styles from './SignUp.module.css'
+import { initialUsersData, type UserTodos } from "../../data/data";
 
 function SignUp() {
     const [user, setUser] = useState({
@@ -17,10 +18,24 @@ function SignUp() {
         return alert('Please fill in all fields');
     }
 
-    console.log('Registered User:', user);
+    const existingData = localStorage.getItem('users_data');
+    const allUsers: UserTodos[] = existingData ? JSON.parse(existingData) : initialUsersData;
 
-    const userData = { email: user.email, password: user.password };
-    localStorage.setItem('logged_in_user', JSON.stringify(userData))
+    const userExists = allUsers.find(u => u.userEmail === user.email);
+    if (userExists) {
+        return alert('User already exists!');
+    }
+
+    const newUser: UserTodos = { 
+        userEmail: user.email, 
+        password: user.password, 
+        todos: [] 
+    };
+
+    const updatedUsers = [...allUsers, newUser];
+    localStorage.setItem('users_data', JSON.stringify(updatedUsers));
+
+    localStorage.setItem('logged_in_user', JSON.stringify(newUser));
 
     setUser({ email: '', password: '' });
     navigate('/toDo');

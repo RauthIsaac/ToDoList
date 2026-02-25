@@ -1,35 +1,54 @@
 import styles from './ToDoPage.module.css';
 import '../../data/data';
-import { initialUsersData } from '../../data/data';
+import { initialUsersData, type UserTodos } from '../../data/data';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function ToDoPage() { 
   const loggedInUser = JSON.parse(localStorage.getItem('logged_in_user') || '{}');
-  const userEmail = loggedInUser.email || '';
-  const userPass = loggedInUser.password || '';
-
-  const currentUser = initialUsersData.find(u => u.userEmail == userEmail && u.password == userPass);
+  const userEmail = loggedInUser.userEmail || '';
 
   const [todos, setToDos] = useState<string[]>(() => {
-    const saved = localStorage.getItem(`user_todos_${userEmail}`);
-    return saved ? JSON.parse(saved) : (currentUser?.todos || []);
+    const storedUsers = localStorage.getItem('users_data');
+    const allUsers: UserTodos[] = storedUsers ? JSON.parse(storedUsers) : initialUsersData;
+    
+    const userInStorage = allUsers.find(u => u.userEmail === userEmail);
+    
+    const savedSessionTodos = localStorage.getItem(`user_todos_${userEmail}`);
+    return savedSessionTodos ? JSON.parse(savedSessionTodos) : (userInStorage?.todos || []);
   });
 
   const [newToDo, setNewToDo] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (userEmail) {
-      localStorage.setItem(`user_todos_${userEmail}`, JSON.stringify(todos));
-    }
-  }, [todos, userEmail]);
-  
-  useEffect(() => {
-    if (!currentUser) {
+    const storedUsers = localStorage.getItem('users_data');
+    const allUsers: UserTodos[] = storedUsers ? JSON.parse(storedUsers) : initialUsersData;
+    
+    const isFound = allUsers.some(u => u.userEmail === userEmail);
+
+    if (!userEmail || !isFound) {
       navigate('/login');
     }
-  }, [currentUser, navigate]);
+  }, [userEmail, navigate]);
+
+  useEffect(() => {
+    if (userEmail) {
+      localStorage.setItem(`user_todos_${userEmail}`, JSON.stringify(todos));
+      
+      const storedUsers = localStorage.getItem('users_data');
+
+      if (storedUsers) {
+        const allUsers: UserTodos[] = JSON.parse(storedUsers);
+        const userIndex = allUsers.findIndex(u => u.userEmail === userEmail);
+        if (userIndex !== -1) {
+          allUsers[userIndex].todos = todos;
+          localStorage.setItem('users_data', JSON.stringify(allUsers));
+        }
+      }
+    }
+  }, [todos, userEmail]);
+
 
   const handleAddClick = () => {
 
